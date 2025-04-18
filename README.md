@@ -48,7 +48,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/1dontgiveaf/Fluent/ma
 local _MarketplaceService78 = game:GetService("MarketplaceService")
 local _call87 = _71:CreateWindow({
     SubTitle = "By Icy_z🐀",
-    Title = _MarketplaceService78:GetProductInfo(6961824067).Name,
+    Title = "Arise Crossover 📌",
     MinimizeKey = Enum.KeyCode.LeftControl,
     Theme = "Darker",
     Acrylic = false,
