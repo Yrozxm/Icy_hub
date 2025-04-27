@@ -1,13 +1,3 @@
---[[
-  __  __ __  __ ___                _           _         _____                 _ 
- |  \/  |  \/  |__ \      /\      | |         (_)       |  __ \               | |
- | \  / | \  / |  ) |    /  \   __| |_ __ ___  _ _ __   | |__) |_ _ _ __   ___| |
- | |\/| | |\/| | / /    / /\ \ / _` | '_ ` _ \| | '_ \  |  ___/ _` | '_ \ / _ \ |
- | |  | | |  | |/ /_   / ____ \ (_| | | | | | | | | | | | |  | (_| | | | |  __/ |
- |_|  |_|_|  |_|____| /_/    \_\__,_|_| |_| |_|_|_| |_| |_|   \__,_|_| |_|\___|_|
-
-
-]]--
 
 local MM2AdminPanel = Instance.new("ScreenGui")
 local MainFrame = Instance.new("Frame")
@@ -969,27 +959,21 @@ MinimizeButton.TextSize = 25.000
 
 local function ZIRG_fake_script() -- MainFrame.DraggingScript 
 	local script = Instance.new('LocalScript', MainFrame)
-
 	local UserInputService = game:GetService("UserInputService")
-	
 	local gui = script.Parent
-	
 	local dragging
 	local dragInput
 	local dragStart
 	local startPos
-	
 	local function update(input)
 		local delta = input.Position - dragStart
 		gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
 	end
-	
 	gui.TopFrame.InputBegan:Connect(function(input)
 		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 			dragging = true
 			dragStart = input.Position
 			startPos = gui.Position
-			
 			input.Changed:Connect(function()
 				if input.UserInputState == Enum.UserInputState.End then
 					dragging = false
@@ -997,13 +981,11 @@ local function ZIRG_fake_script() -- MainFrame.DraggingScript
 			end)
 		end
 	end)
-	
 	gui.InputChanged:Connect(function(input)
 		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
 			dragInput = input
 		end
 	end)
-	
 	UserInputService.InputChanged:Connect(function(input)
 		if input == dragInput and dragging then
 			update(input)
@@ -1013,7 +995,6 @@ end
 coroutine.wrap(ZIRG_fake_script)()
 local function YMZQ_fake_script() -- MainFrame.TweenIntro 
 	local script = Instance.new('LocalScript', MainFrame)
-
 	wait(1)
 	script.Parent.StartFrame:TweenSize(UDim2.new(0,100,0,100), "Out", "Quad", 0.5, true)
 	wait(1)
@@ -1027,25 +1008,20 @@ end
 coroutine.wrap(YMZQ_fake_script)()
 local function MXBYD_fake_script() -- Activation.Script 
 	local script = Instance.new('Script', Activation)
-
 		flying = false
 		lplayer = game.Players.LocalPlayer
 		speedget = 1
 		speedfly = 1
 		Mouse = lplayer:GetMouse()
-		
 		script.Parent.MouseButton1Click:Connect(function()
 			if flying == false then
-				script.Parent.BackgroundColor3 = Color3.fromRGB(52, 255, 52)
-				
+				script.Parent.BackgroundColor3 = Color3.fromRGB(52, 255, 52)			
 				repeat wait() until lplayer and lplayer.Character and lplayer.Character:FindFirstChild('HumanoidRootPart') and lplayer.Character:FindFirstChild('Humanoid')
 				repeat wait() until Mouse
-				
 				local T = lplayer.Character.HumanoidRootPart
 				local CONTROL = {F = 0, B = 0, L = 0, R = 0}
 				local lCONTROL = {F = 0, B = 0, L = 0, R = 0}
 				local SPEED = speedget
-				
 				local function fly()
 					flying = true
 					local BG = Instance.new('BodyGyro', T)
@@ -1110,21 +1086,16 @@ local function MXBYD_fake_script() -- Activation.Script
 				lplayer.Character.Humanoid.PlatformStand = false
 			end
 		end)
-		
 		Mouse.KeyDown:Connect(function(k)
 			if k == "x" then
-				
 				if flying == false then
 					script.Parent.BackgroundColor3 = Color3.fromRGB(52, 255, 52)
-					
 					repeat wait() until lplayer and lplayer.Character and lplayer.Character:FindFirstChild('HumanoidRootPart') and lplayer.Character:FindFirstChild('Humanoid')
 					repeat wait() until Mouse
-					
 					local T = lplayer.Character.HumanoidRootPart
 					local CONTROL = {F = 0, B = 0, L = 0, R = 0}
 					local lCONTROL = {F = 0, B = 0, L = 0, R = 0}
 					local SPEED = speedget
-					
 					local function fly()
 						flying = true
 						local BG = Instance.new('BodyGyro', T)
@@ -1187,24 +1158,20 @@ local function MXBYD_fake_script() -- Activation.Script
 					flying = false
 					script.Parent.BackgroundColor3 = Color3.fromRGB(255, 51, 51)
 					lplayer.Character.Humanoid.PlatformStand = false
-				end
-				
+				end	
 			end
 		end)
 end
 coroutine.wrap(MXBYD_fake_script)()
 local function HREBVA_fake_script() -- Activation_2.Script 
 	local script = Instance.new('Script', Activation_2)
-
 		noclip = false
 		local Mouse = game.Players.LocalPlayer:GetMouse()
-		
 		game:GetService('RunService').Stepped:connect(function()
 			if noclip then
 				game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
 			end
 		end)
-		
 		script.Parent.MouseButton1Down:connect(function()
 			noclip = not noclip
 			if noclip then
@@ -1213,24 +1180,20 @@ local function HREBVA_fake_script() -- Activation_2.Script
 				script.Parent.BackgroundColor3 = Color3.fromRGB(255, 51, 51)
 			end
 		end)
-		
 		Mouse.KeyDown:Connect(function(k)
 			if k == "c" then
-				
 				noclip = not noclip
 				if noclip then
 					script.Parent.BackgroundColor3 = Color3.fromRGB(52, 255, 52)
 				else
 					script.Parent.BackgroundColor3 = Color3.fromRGB(255, 51, 51)
-				end
-				
+				end	
 			end	
 		end)
 end
 coroutine.wrap(HREBVA_fake_script)()
 local function WLZBXL_fake_script() -- SetActivation.Script 
 	local script = Instance.new('Script', SetActivation)
-
 		script.Parent.MouseButton1Down:connect(function()	
 			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = script.Parent.Parent.WalkspeedTB.Text	
 		end)
@@ -1238,7 +1201,6 @@ end
 coroutine.wrap(WLZBXL_fake_script)()
 local function YRYWA_fake_script() -- ResetActivation.Script 
 	local script = Instance.new('Script', ResetActivation)
-
 		script.Parent.MouseButton1Down:connect(function()	
 		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
 		script.Parent.Parent.WalkspeedTB.Text = ""
@@ -1247,7 +1209,6 @@ end
 coroutine.wrap(YRYWA_fake_script)()
 local function CFCRCM_fake_script() -- SetActivation_2.Script 
 	local script = Instance.new('Script', SetActivation_2)
-
 		script.Parent.MouseButton1Down:connect(function()	
 			game.Players.LocalPlayer.Character.Humanoid.JumpPower = script.Parent.Parent.JumpPowerTB.Text	
 		end)
@@ -1255,7 +1216,6 @@ end
 coroutine.wrap(CFCRCM_fake_script)()
 local function PDGD_fake_script() -- ResetActivation_2.Script 
 	local script = Instance.new('Script', ResetActivation_2)
-
 		script.Parent.MouseButton1Down:connect(function()	
 		game.Players.LocalPlayer.Character.Humanoid.JumpPower = 48
 		script.Parent.Parent.JumpPowerTB.Text = ""
@@ -1264,10 +1224,8 @@ end
 coroutine.wrap(PDGD_fake_script)()
 local function SPNLPQB_fake_script() -- Activation_3.Script 
 	local script = Instance.new('Script', Activation_3)
-
 	local Mouse = game.Players.LocalPlayer:GetMouse()
 	local InfiniteJump = false
-	
 	script.Parent.MouseButton1Down:connect(function()
 		if InfiniteJump == false then
 			InfiniteJump = true
@@ -1277,7 +1235,6 @@ local function SPNLPQB_fake_script() -- Activation_3.Script
 			script.Parent.BackgroundColor3 = Color3.fromRGB(255, 51, 51)
 		end
 	end)
-	
 	Mouse.KeyDown:Connect(function(k)
 		if k == "v" then
 			if InfiniteJump == false then
@@ -1289,7 +1246,6 @@ local function SPNLPQB_fake_script() -- Activation_3.Script
 			end	
 		end
 	end)
-	
 	game:GetService("UserInputService").JumpRequest:connect(function()
 		if InfiniteJump == true then
 			game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
@@ -1299,9 +1255,7 @@ end
 coroutine.wrap(SPNLPQB_fake_script)()
 local function YFSUJW_fake_script() -- Activation_4.Script 
 	local script = Instance.new('Script', Activation_4)
-
 		local toggle = false
-		
 		script.Parent.MouseButton1Click:Connect(function()	
 			if toggle == false then
 				toggle = true
@@ -1310,18 +1264,15 @@ local function YFSUJW_fake_script() -- Activation_4.Script
 				toggle = false
 				script.Parent.BackgroundColor3 = Color3.fromRGB(255, 51, 51)
 			end
-			
 			while toggle do wait(.25)
 				local place = workspace:GetChildren()	
 				local currentX = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.X
 				local currentY = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Y
 				local currentZ = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Z
-				
 				for i,v in pairs(place) do	    
 				    local vChildren = v:GetChildren()
 				    for i,child in pairs(vChildren) do
-				        if child.Name == "CoinContainer" then
-				            
+				        if child.Name == "CoinContainer" then  
 							if child.Coin_Server:FindFirstChild("Coin") ~= nil then
 					            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = child.Coin_Server.Coin.CFrame
 							else
@@ -1329,18 +1280,15 @@ local function YFSUJW_fake_script() -- Activation_4.Script
 								script.Parent.BackgroundColor3 = Color3.fromRGB(255, 51, 51)
 								toggle = false
 							end
-				
 				        end
 				    end	
 				end
 			end
-			
 		end)
 end
 coroutine.wrap(YFSUJW_fake_script)()
 local function CKAW_fake_script() -- Activation_5.Script 
 	local script = Instance.new('Script', Activation_5)
-
 	local obj = game.workspace
 	function XrayOn(obj) --Enables xray
 	    for _,v in pairs(obj:GetChildren()) do
@@ -1350,7 +1298,6 @@ local function CKAW_fake_script() -- Activation_5.Script
 	    XrayOn(v)
 	    end
 	end
-	 
 	function XrayOff(obj) --Disables xray
 	    for _,v in pairs(obj:GetChildren()) do
 	        if (v:IsA("BasePart")) and not v.Parent:FindFirstChild("Humanoid") then
@@ -1358,9 +1305,7 @@ local function CKAW_fake_script() -- Activation_5.Script
 	        end XrayOff(v)
 	    end
 	end
-	
 	local toggle = false
-		
 		script.Parent.MouseButton1Click:Connect(function()	
 			if toggle == false then
 				toggle = true
@@ -1376,7 +1321,6 @@ end
 coroutine.wrap(CKAW_fake_script)()
 local function NJKYNZM_fake_script() -- Activation_6.Script 
 	local script = Instance.new('Script', Activation_6)
-
 	script.Parent.MouseButton1Down:Connect(function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/MarsQQ/ScriptHubScripts/master/MM2Autofarm"))();
 	end)
@@ -1384,8 +1328,6 @@ end
 coroutine.wrap(NJKYNZM_fake_script)()
 local function QHWFTYB_fake_script() -- Activation_7.Script 
 	local script = Instance.new('Script', Activation_7)
-
-	
 	local function GetMurderer()
 	    local plrs = game:GetService("Players")
 	    for i,v in pairs(plrs:GetPlayers()) do
@@ -1400,8 +1342,7 @@ local function QHWFTYB_fake_script() -- Activation_7.Script
 	repeat
 	    if Murderer ~= nil then --// Checking if there actually is a murderer
 				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Murderer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 5)
-				workspace.CurrentCamera.CFrame = Murderer.Character.HumanoidRootPart.CFrame
-				
+				workspace.CurrentCamera.CFrame = Murderer.Character.HumanoidRootPart.CFrame	
 			end
 	    wait()
 		until Murderer.Character.Humanoid.Health == 0
@@ -1411,35 +1352,27 @@ end
 coroutine.wrap(QHWFTYB_fake_script)()
 local function PIWZ_fake_script() -- Activation_8.Script 
 	local script = Instance.new('Script', Activation_8)
-
 		script.Parent.MouseButton1Click:Connect(function()
-			
 			local currentX = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.X
 			local currentY = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Y
 			local currentZ = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Z	
-			
 			if workspace:FindFirstChild("GunDrop") ~= nil then
-			
 				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace:FindFirstChild("GunDrop").CFrame	
 			wait(.25)	
 				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(currentX, currentY, currentZ)
-				
 			else
-				
 			    game.StarterGui:SetCore("SendNotification", {
 	    Title = "MM2 Admin Panel";
 	    Text = "Wait for the Sheriff's death to grab the gun";
 	    Icon = "";
 	    Duration = "2";
 	})
-				
 			end	
 		end)
 end
 coroutine.wrap(PIWZ_fake_script)()
 local function GTOJAZG_fake_script() -- Activation_9.Script 
 	local script = Instance.new('Script', Activation_9)
-
 	script.Parent.MouseButton1Click:Connect(function()
 		    	local Players = game:GetService("Players")	
 			    for i, Victim in pairs(Players:GetPlayers()) do
@@ -1456,7 +1389,6 @@ end
 coroutine.wrap(GTOJAZG_fake_script)()
 local function TJPSA_fake_script() -- Activation_10.Script 
 	local script = Instance.new('Script', Activation_10)
-
 	script.Parent.MouseButton1Down:Connect(function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/MarsQQ/ScriptHubScripts/master/FPS%20Boost"))();
 	end)
@@ -1464,7 +1396,6 @@ end
 coroutine.wrap(TJPSA_fake_script)()
 local function FGLRVKA_fake_script() -- AimTB.LocalScript 
 	local script = Instance.new('LocalScript', AimTB)
-
 	script.Parent.FocusLost:connect(function()
 		for i,v in pairs(game.Players:GetChildren()) do
 			if (string.sub(string.lower(v.Name),1,string.len(script.Parent.Text))) == string.lower(script.Parent.Text) then
@@ -1477,7 +1408,6 @@ end
 coroutine.wrap(FGLRVKA_fake_script)()
 local function LZHKGTA_fake_script() -- AimPlayer.Script 
 	local script = Instance.new('Script', AimPlayer)
-
 	script.Parent.AimActivation.MouseButton1Click:Connect(function()
 		_G.on = true
 		local user = script.Parent.AimTB.Text
@@ -1494,7 +1424,6 @@ local function LZHKGTA_fake_script() -- AimPlayer.Script
 			end
 		end
 	end)
-	
 	script.Parent.DeAimActivation.MouseButton1Click:Connect(function()
 		_G.on = false
 	end)
@@ -1502,9 +1431,7 @@ end
 coroutine.wrap(LZHKGTA_fake_script)()
 local function MVWHPW_fake_script() -- VisualFrame.Script1 
 	local script = Instance.new('Script', VisualFrame)
-
 	local ESPToggle = false
-	
 	local plrs = game:GetService("Players")
 	local faces = {"Back","Bottom","Front","Left","Right","Top"}
 	function MakeESP()
@@ -1573,7 +1500,6 @@ local function MVWHPW_fake_script() -- VisualFrame.Script1
 			end
 		end
 	end
-	
 	function ClearESP()
 		for _, v in pairs(game.Workspace:GetDescendants()) do
 			if v.Name == ("EGUI") then
@@ -1581,7 +1507,6 @@ local function MVWHPW_fake_script() -- VisualFrame.Script1
 			end
 		end
 	end
-	
 	script.Parent.AllESP.Activation.MouseButton1Click:Connect(function()
 			if ESPToggle == false then
 				ESPToggle = true
@@ -1599,8 +1524,6 @@ local function MVWHPW_fake_script() -- VisualFrame.Script1
 			pcall(MakeESP)
 		end
 	end)
-	
-	
 	game:GetService("Players").PlayerAdded:Connect(function(v)
 		if ESPToggle == true then
 			wait(1)
@@ -1608,7 +1531,6 @@ local function MVWHPW_fake_script() -- VisualFrame.Script1
 			pcall(MakeESP)
 		end
 	end)
-	
 	game:GetService("Players").PlayerRemoving:Connect(function(v)
 		if ESPToggle == true then
 			wait(1)
@@ -1616,7 +1538,6 @@ local function MVWHPW_fake_script() -- VisualFrame.Script1
 			pcall(MakeESP)
 		end
 	end)
-	
 	while wait(60) do
 		if ESPToggle == true then
 			wait(1)
@@ -1630,28 +1551,20 @@ end
 coroutine.wrap(MVWHPW_fake_script)()
 local function OVVPNM_fake_script() -- Activation_13.Script 
 	local script = Instance.new('Script', Activation_13)
-
 		script.Parent.MouseButton1Click:Connect(function()
-			
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-108.5, 145, 0.6)
-			
 		end)
 end
 coroutine.wrap(OVVPNM_fake_script)()
 local function ODJNX_fake_script() -- Activation_14.Script 
 	local script = Instance.new('Script', Activation_14)
-
 		script.Parent.MouseButton1Click:Connect(function()	
 			local Workplace = workspace:GetChildren()
-			
 			for i, Thing in pairs(Workplace) do
-			
 			    local ThingChildren = Thing:GetChildren()
 			    for i, Child in pairs(ThingChildren) do
 			        if Child.Name == "Spawns" then
-			           
 			           game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Child.Spawn.CFrame
-			
 			        end
 			    end
 			end
@@ -1660,7 +1573,6 @@ end
 coroutine.wrap(ODJNX_fake_script)()
 local function CQNKW_fake_script() -- TeleportTB.LocalScript 
 	local script = Instance.new('LocalScript', TeleportTB)
-
 	script.Parent.FocusLost:connect(function()
 		for i,v in pairs(game.Players:GetChildren()) do
 			if (string.sub(string.lower(v.Name),1,string.len(script.Parent.Text))) == string.lower(script.Parent.Text) then
@@ -1673,58 +1585,44 @@ end
 coroutine.wrap(CQNKW_fake_script)()
 local function XYYM_fake_script() -- TeleportButton.LocalScript 
 	local script = Instance.new('LocalScript', TeleportButton)
-
 		script.Parent.MouseButton1Click:Connect(function()	
-		
 			local Victim = script.Parent.Parent.TeleportTB.Text
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Victim].Character.HumanoidRootPart.CFrame 
-		
 		end)
 end
 coroutine.wrap(XYYM_fake_script)()
 local function JZRZ_fake_script() -- Activation_15.Script 
 	local script = Instance.new('Script', Activation_15)
-
 		script.Parent.MouseButton1Click:Connect(function()	
 			local Players = game:GetService("Players")			
 			for i, player in pairs(Players:GetPlayers()) do
-				
 			    local bp = player.Backpack:GetChildren()
 			    for i, tool in pairs(bp) do
-			        if tool.Name == "Knife" then
-													
+			        if tool.Name == "Knife" then						
 				    	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[tool.Parent.Parent.Name].Character.HumanoidRootPart.CFrame
-				
 					end
 				end
-			
 			end
 		end)
 end
 coroutine.wrap(JZRZ_fake_script)()
 local function KFEOGB_fake_script() -- Activation_16.Script 
 	local script = Instance.new('Script', Activation_16)
-
 		script.Parent.MouseButton1Click:Connect(function()	
 			local Players = game:GetService("Players")			
-			for i, player in pairs(Players:GetPlayers()) do
-				
+			for i, player in pairs(Players:GetPlayers()) do	
 			    local bp = player.Backpack:GetChildren()
 			    for i, tool in pairs(bp) do
-			        if tool.Name == "Gun" then
-													
+			        if tool.Name == "Gun" then								
 				    	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[tool.Parent.Parent.Name].Character.HumanoidRootPart.CFrame
-				
 					end
 				end
-			
 			end
 		end)
 end
 coroutine.wrap(KFEOGB_fake_script)()
 local function JIPBTDH_fake_script() -- BottomFrame.LocalScript 
 	local script = Instance.new('LocalScript', BottomFrame)
-
 	script.Parent.Tab1.MouseButton1Click:Connect(function()
 		script.Parent.MainFrame.Visible = true
 		script.Parent.PlayerFrame.Visible = false
@@ -1769,9 +1667,7 @@ end
 coroutine.wrap(JIPBTDH_fake_script)()
 local function AVLOK_fake_script() -- MinimizeButton.LocalScript 
 	local script = Instance.new('LocalScript', MinimizeButton)
-
 	local minimize = false
-	
 	script.Parent.MouseButton1Click:connect(function()
 		if minimize == false then
 			minimize = true
